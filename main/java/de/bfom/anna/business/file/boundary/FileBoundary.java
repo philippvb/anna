@@ -14,4 +14,7 @@ public class FileBoundary {
     public void save(File file){
         mycontroller.persist(file);
     }
+    public File retrieve(int id){
+        return mycontroller.retrieveById(id);
+    }
 }

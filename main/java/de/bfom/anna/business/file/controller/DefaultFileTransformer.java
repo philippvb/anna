@@ -15,6 +15,8 @@ import de.bfom.anna.business.file.entity.*;
 public class DefaultFileTransformer implements FileTransformer{
 
     private FileToByte transformer = new FileToByte();
+    private ByteToFile transformerToByte = new ByteToFile();
+
 
      public FileEntity transform(File file){
          String name = file.getName();
@@ -29,5 +31,13 @@ public class DefaultFileTransformer implements FileTransformer{
                 .build();
         return transfile;
     }
+
+    public File transformToFile(FileEntity entity){
+         File output;
+         output = transformerToByte.transform(entity);
+         return output;
+     }
+
+
 
 }

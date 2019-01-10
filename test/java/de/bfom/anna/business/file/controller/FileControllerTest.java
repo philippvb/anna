@@ -1,6 +1,7 @@
 package de.bfom.anna.business.file.controller;
 
 import de.bfom.anna.business.file.daos.FileSaver;
+import de.bfom.anna.business.file.daos.RetrieveByID;
 import de.bfom.anna.business.file.daos.SaveFile;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,13 +18,15 @@ class FileControllerTest {
     private FileController mycontroller;
     private FileSaver mysaver;
     private FileTransformer mytransformer;
+    private RetrieveByID myretriever;
 
     @BeforeAll
     void init(){
         myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
         mysaver = new SaveFile(myfactory);
         mytransformer = new DefaultFileTransformer();
-        mycontroller = new FileController(myfactory, mysaver, mytransformer);
+        myretriever = new RetrieveByID(myfactory);
+        mycontroller = new FileController(myfactory, mysaver, mytransformer, myretriever);
     }
 
 

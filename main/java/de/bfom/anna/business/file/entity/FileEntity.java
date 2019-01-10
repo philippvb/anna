@@ -21,8 +21,6 @@ public class FileEntity {
     @Column(name = "created")
     private LocalDateTime created;
 
-
-
     @Lob
     @Column(name = "file", columnDefinition="BLOB")
     private byte[] file;
@@ -81,6 +79,10 @@ public class FileEntity {
         this.setMime(b.mime);
         this.setCreated(b.created);
         this.setFile(b.file);
+    }
+
+    public FileEntity(){
+
     }
 
     public static final class Builder{

@@ -8,4 +8,5 @@ public interface FileTransformer {
 
     public FileEntity transform(File file);
 
+    public File transformToFile(FileEntity entity);
 }
