@@ -6,6 +6,7 @@ import org.apache.commons.io.FilenameUtils;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -23,7 +24,6 @@ public class DefaultFileTransformer implements FileTransformer{
          Tika t = new Tika();
          try{
              mime = t.detect(file);
-         System.out.println(mime);
          }
          catch(IOException e) {
              e.printStackTrace();

@@ -1,8 +1,6 @@
 package de.bfom.anna.business.file.controller;
 
-import de.bfom.anna.business.file.daos.FileSaver;
-import de.bfom.anna.business.file.daos.RetrieveByID;
-import de.bfom.anna.business.file.daos.SaveFile;
+import de.bfom.anna.business.file.daos.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +17,7 @@ class FileControllerTest {
     private FileSaver mysaver;
     private FileTransformer mytransformer;
     private RetrieveByID myretriever;
+    private FileDeleter mydeleter;
 
     @BeforeAll
     void init(){
@@ -26,7 +25,9 @@ class FileControllerTest {
         mysaver = new SaveFile(myfactory);
         mytransformer = new DefaultFileTransformer();
         myretriever = new RetrieveByID(myfactory);
-        mycontroller = new FileController(myfactory, mysaver, mytransformer, myretriever);
+        mydeleter = new DeleteFile(myfactory);
+
+        mycontroller = new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter);
     }
 
 

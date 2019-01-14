@@ -11,10 +11,15 @@ public class FileBoundary {
         this.mycontroller = mycontroller;
     }
 
-    public void save(File file){
+    public void save(File file) {
         mycontroller.persist(file);
     }
+
     public File retrieve(int id){
-        return mycontroller.retrieveById(id);
+        return mycontroller.retrieveToFile(id);
+    }
+
+    public boolean delete(int id){
+        return mycontroller.saveDeletion(id);
     }
 }

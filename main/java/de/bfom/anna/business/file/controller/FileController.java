@@ -1,7 +1,6 @@
 package de.bfom.anna.business.file.controller;
 
-import de.bfom.anna.business.file.daos.FileSaver;
-import de.bfom.anna.business.file.daos.RetrieveByID;
+import de.bfom.anna.business.file.daos.*;
 import de.bfom.anna.business.file.entity.FileEntity;
 import javax.persistence.*;
 import java.io.File;
@@ -12,12 +11,22 @@ public class FileController{
     FileSaver saver;
     FileTransformer transformer;
     RetrieveByID retriever;
+    FileDeleter deleter;
 
-    public FileController(EntityManagerFactory myfactory, FileSaver saver, FileTransformer transformer, RetrieveByID retriever){
+    public FileController(EntityManagerFactory myfactory, FileSaver saver, FileTransformer transformer, RetrieveByID retriever, FileDeleter deleter){
         this.myfactory = myfactory;
         this.saver = saver;
         this.transformer = transformer;
         this.retriever = retriever;
+        this.deleter = deleter;
+    }
+
+    public static FileController defaultinit(EntityManagerFactory myfactory){
+        FileSaver mysaver = new SaveFile(myfactory);
+        FileTransformer mytransformer = new DefaultFileTransformer();
+        RetrieveByID myretriever = new RetrieveByID(myfactory);
+        FileDeleter mydeleter = new DeleteFile(myfactory);
+        return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter);
     }
 
     public void persist(File file) throws RuntimeException{
@@ -25,7 +34,7 @@ public class FileController{
         saver.save(tosave);
     }
 
-    public File retrieveById(int id){
+    public File retrieveToFile(int id){
         FileEntity retentity = retriever.retrieve(id);
         File retfile = null;
 
@@ -36,7 +45,14 @@ public class FileController{
             retfile = transformer.transformToFile(retentity);
             return retfile;
         }
+    }
 
+    public FileEntity retrieve(int id){
+        return retriever.retrieve(id);
+    }
+
+    public boolean saveDeletion(int id){
+        return deleter.delete(id);
     }
 
 }
