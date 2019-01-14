@@ -4,6 +4,7 @@ import de.bfom.anna.business.file.boundary.FileBoundary;
 import de.bfom.anna.business.file.controller.*;
 import de.bfom.anna.business.file.daos.*;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.persistence.*;
 import java.awt.*;
 import java.io.File;
@@ -25,11 +26,12 @@ public class Startup {
         myboundary.save(testfile);
         Desktop d = Desktop.getDesktop();
         try{
-            d.open(myboundary.retrieve(100));
+            d.open(myboundary.retrieve(1));
         }
         catch(IOException e){
             e.printStackTrace();
         }
+
 
 
     }
@@ -43,5 +45,6 @@ public class Startup {
     - name of FileEntity cut suffix
     - retrieve with other values than primary key? (maybe at front end??)
     - handle if file is null
+    - Data field size too small for pictures, also mime field to small for some values
 
  */

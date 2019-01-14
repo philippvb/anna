@@ -1,16 +1,18 @@
 package de.bfom.anna.business.file.controller;
 
 import de.bfom.anna.business.file.entity.FileEntity;
+import org.apache.tika.Tika;
 import sun.misc.IOUtils;
 
 import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.TimeZone;
 
-import de.bfom.anna.business.file.entity.*;
 
 public class DefaultFileTransformer implements FileTransformer{
 
@@ -20,8 +22,18 @@ public class DefaultFileTransformer implements FileTransformer{
 
      public FileEntity transform(File file){
          String name = file.getName();
-         String mime = new MimetypesFileTypeMap().getContentType(file);
+         String mime = "";
+         Tika t = new Tika();
+         try{
+             mime = t.detect(file);
+         System.out.println(mime);
+         }
+         catch(IOException e) {
+             e.printStackTrace();
+         }
+
          byte[] bFile = transformer.tobyte(file);
+
 
          FileEntity transfile = FileEntity.newFileEntity()
                 .name(name)
