@@ -11,7 +11,7 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SaveFileTest {
+class CreateFileTest {
     EntityManagerFactory myfactory;
     FileController mycontroller;
 

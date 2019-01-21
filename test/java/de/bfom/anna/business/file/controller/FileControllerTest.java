@@ -9,20 +9,18 @@ import javax.persistence.Persistence;
 
 import java.sql.Blob;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class FileControllerTest {
     private EntityManagerFactory myfactory;
     private FileController mycontroller;
-    private FileSaver mysaver;
+    private Create mysaver;
     private FileTransformer mytransformer;
     private RetrieveByID myretriever;
-    private FileDeleter mydeleter;
+    private Delete mydeleter;
 
     @BeforeAll
     void init(){
         myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
-        mysaver = new SaveFile(myfactory);
+        mysaver = new CreateFile(myfactory);
         mytransformer = new DefaultFileTransformer();
         myretriever = new RetrieveByID(myfactory);
         mydeleter = new DeleteFile(myfactory);

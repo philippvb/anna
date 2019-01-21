@@ -8,12 +8,12 @@ import java.io.File;
 
 public class FileController{
     EntityManagerFactory myfactory;
-    FileSaver saver;
+    Create saver;
     FileTransformer transformer;
     RetrieveByID retriever;
-    FileDeleter deleter;
+    Delete deleter;
 
-    public FileController(EntityManagerFactory myfactory, FileSaver saver, FileTransformer transformer, RetrieveByID retriever, FileDeleter deleter){
+    public FileController(EntityManagerFactory myfactory, Create saver, FileTransformer transformer, RetrieveByID retriever, Delete deleter){
         this.myfactory = myfactory;
         this.saver = saver;
         this.transformer = transformer;
@@ -22,10 +22,10 @@ public class FileController{
     }
 
     public static FileController defaultinit(EntityManagerFactory myfactory){
-        FileSaver mysaver = new SaveFile(myfactory);
+        Create mysaver = new CreateFile(myfactory);
         FileTransformer mytransformer = new DefaultFileTransformer();
         RetrieveByID myretriever = new RetrieveByID(myfactory);
-        FileDeleter mydeleter = new DeleteFile(myfactory);
+        Delete mydeleter = new DeleteFile(myfactory);
         return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter);
     }
 

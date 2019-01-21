@@ -6,10 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-public class SaveFile implements FileSaver {
+public class CreateFile implements Create {
     private EntityManagerFactory myfactory;
 
-    public SaveFile(EntityManagerFactory myfactory){
+    public CreateFile(EntityManagerFactory myfactory){
         this.myfactory = myfactory;
     }
 
