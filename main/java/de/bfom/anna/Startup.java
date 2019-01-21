@@ -13,19 +13,15 @@ public class Startup {
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("MeineJpaPU");
-
         FileController mycontroller = FileController.defaultinit(emf);
-
         FileBoundary myboundary = new FileBoundary(mycontroller);
         File testfile = new File("src/testfiles/testpicture.jpg");
         File testfile2 = new File("src/testfiles/test.txt");
-
         MainFrame myframe = new MainFrame();
-        // myframe.init();
+        myframe.init(myboundary);
 
         myboundary.save(testfile);
         myboundary.save(testfile2);
-        System.out.println(mycontroller.getall().get(1).getName());
 
 
         /* myboundary.save(testfile);
