@@ -43,4 +43,8 @@ public class EntityTable extends AbstractTableModel {
    public void setvalues(List<FileEntity> l){
        this.data = l;
    }
+
+   public FileEntity getEntity(int id){
+        return data.get(id);
+   }
 }
