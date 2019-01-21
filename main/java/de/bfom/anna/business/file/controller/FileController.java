@@ -12,13 +12,15 @@ public class FileController{
     FileTransformer transformer;
     RetrieveByID retriever;
     Delete deleter;
+    Update updater;
 
-    public FileController(EntityManagerFactory myfactory, Create saver, FileTransformer transformer, RetrieveByID retriever, Delete deleter){
+    public FileController(EntityManagerFactory myfactory, Create saver, FileTransformer transformer, RetrieveByID retriever, Delete deleter, Update updater){
         this.myfactory = myfactory;
         this.saver = saver;
         this.transformer = transformer;
         this.retriever = retriever;
         this.deleter = deleter;
+        this.updater = updater;
     }
 
     public static FileController defaultinit(EntityManagerFactory myfactory){
@@ -26,7 +28,8 @@ public class FileController{
         FileTransformer mytransformer = new DefaultFileTransformer();
         RetrieveByID myretriever = new RetrieveByID(myfactory);
         Delete mydeleter = new DeleteFile(myfactory);
-        return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter);
+        Update myupdater = new DefaultUpdate(myfactory);
+        return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter, myupdater);
     }
 
     public void persist(File file) throws RuntimeException{
@@ -53,6 +56,13 @@ public class FileController{
 
     public boolean saveDeletion(int id){
         return deleter.delete(id);
+    }
+
+    public void update(File file, int id){
+        FileEntity toupdate = transformer.transform(file);
+        toupdate.setId(id);
+        updater.update(toupdate);
+
     }
 
 }

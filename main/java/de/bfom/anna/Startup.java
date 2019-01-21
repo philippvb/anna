@@ -16,16 +16,27 @@ public class Startup {
 
         FileBoundary myboundary = new FileBoundary(mycontroller);
         File testfile = new File("src/testfiles/testpicture.jpg");
+        File updatefile = new File("src/testfiles/test.txt");
 
-        myboundary.save(testfile);
-
+        /* myboundary.save(testfile);
         Desktop d = Desktop.getDesktop();
         try{
             d.open(myboundary.retrieve(1));
         }
         catch(IOException e){
             e.printStackTrace();
+        } */
+
+        mycontroller.update(updatefile, 3);
+
+        /*
+        try{
+            d.open(myboundary.retrieve(1));
         }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        */
 
     }
 }
@@ -38,8 +49,10 @@ public class Startup {
     + name of FileEntity cut suffix
     - retrieve with other values than primary key? (maybe at front end??)
     - handle if file is null
-    - Data field size too small for pictures, also mime field to small for some values
-    - updating a file
+    - is it possible that file does not exist and you use that update key?
+    - handle merge exceptions if there are some?
+    + Data field size too small for pictures, also mime field to small for some values
+    + updating a file
     - maybe getting id back when persisting a fileentity
 
  */

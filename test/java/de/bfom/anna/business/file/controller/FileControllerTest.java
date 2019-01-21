@@ -20,12 +20,8 @@ class FileControllerTest {
     @BeforeAll
     void init(){
         myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
-        mysaver = new CreateFile(myfactory);
-        mytransformer = new DefaultFileTransformer();
-        myretriever = new RetrieveByID(myfactory);
-        mydeleter = new DeleteFile(myfactory);
 
-        mycontroller = new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter);
+        mycontroller = FileController.defaultinit(myfactory);
     }
 
 

@@ -22,4 +22,8 @@ public class FileBoundary {
     public boolean delete(int id){
         return mycontroller.saveDeletion(id);
     }
+
+    public void update(File file, int id){
+        mycontroller.update(file, id);
+    }
 }
