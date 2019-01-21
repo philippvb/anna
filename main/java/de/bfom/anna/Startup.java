@@ -2,6 +2,8 @@ package de.bfom.anna;
 
 import de.bfom.anna.business.file.boundary.FileBoundary;
 import de.bfom.anna.business.file.controller.*;
+import de.bfom.anna.gui.MainFrame;
+
 import javax.persistence.*;
 import java.awt.*;
 import java.io.File;
@@ -16,7 +18,15 @@ public class Startup {
 
         FileBoundary myboundary = new FileBoundary(mycontroller);
         File testfile = new File("src/testfiles/testpicture.jpg");
-        File updatefile = new File("src/testfiles/test.txt");
+        File testfile2 = new File("src/testfiles/test.txt");
+
+        MainFrame myframe = new MainFrame();
+        // myframe.init();
+
+        myboundary.save(testfile);
+        myboundary.save(testfile2);
+        System.out.println(mycontroller.getall().get(1).getName());
+
 
         /* myboundary.save(testfile);
         Desktop d = Desktop.getDesktop();
@@ -27,7 +37,7 @@ public class Startup {
             e.printStackTrace();
         } */
 
-        mycontroller.update(updatefile, 3);
+        //mycontroller.update(updatefile, 3);
 
         /*
         try{
