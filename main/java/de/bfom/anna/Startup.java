@@ -5,6 +5,7 @@ import de.bfom.anna.business.file.controller.*;
 import javax.persistence.*;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 public class Startup {
     public static void main(String[] args) {
@@ -14,19 +15,18 @@ public class Startup {
         FileController mycontroller = FileController.defaultinit(emf);
 
         FileBoundary myboundary = new FileBoundary(mycontroller);
-        File testfile = new File("src/testfiles/test.txt");
+        File testfile = new File("src/testfiles/testpicture.jpg");
 
         myboundary.save(testfile);
 
-        /* myboundary.save(testfile);
         Desktop d = Desktop.getDesktop();
         try{
             d.open(myboundary.retrieve(1));
         }
-        catch(IO e){
+        catch(IOException e){
             e.printStackTrace();
         }
-        */
+
     }
 }
 

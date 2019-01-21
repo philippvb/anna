@@ -22,7 +22,7 @@ public class FileEntity {
     private LocalDateTime created;
 
     @Lob
-    @Column(name = "file", columnDefinition="BLOB")
+    @Column(name = "file", columnDefinition="MEDIUMBLOB")
     private byte[] file;
 
 
