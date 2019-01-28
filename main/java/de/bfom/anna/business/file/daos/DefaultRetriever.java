@@ -43,8 +43,8 @@ public class DefaultRetriever implements Retrieve{
 
     public List<FileEntity> retrieve(String name){
         EntityManager em = myfactory.createEntityManager();
-        Query q = em.createNativeQuery("SELECT * FROM files Where files.name = \" "
-                        + name + "\"", FileEntity.class);
+        Query q = em.createNativeQuery("SELECT * FROM files WHERE files.name = \"" + name + "\"",
+                FileEntity.class);
         List<FileEntity> results = q.getResultList();
         return results;
     }

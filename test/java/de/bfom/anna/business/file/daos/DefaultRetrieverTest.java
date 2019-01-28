@@ -16,12 +16,14 @@ class DefaultRetrieverTest {
     EntityManagerFactory myfactory;
     FileController mycontroller;
     FileEntity del;
+    DefaultRetriever ret;
 
 
     @BeforeEach
     void init(){
         myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
         mycontroller = FileController.defaultinit(myfactory);
+        ret = new DefaultRetriever(myfactory);
     }
 
     @Test
@@ -31,5 +33,12 @@ class DefaultRetrieverTest {
         assertTrue(mycontroller.retrieve(1) != null);
         mycontroller.saveDeletion(1);
         assertEquals(null, mycontroller.retrieve(1));
+    }
+
+    @Test
+    void retrieveByName(){
+        mycontroller.persist(new File("src/testfiles/test.txt"));
+        mycontroller.persist(new File("src/testfiles/test.txt"));
+        assertFalse(ret.retrieve("test").isEmpty());
     }
 }

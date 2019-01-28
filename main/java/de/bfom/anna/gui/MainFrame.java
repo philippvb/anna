@@ -21,7 +21,7 @@ public class MainFrame implements ActionListener{
     private JButton update;
     private JButton save;
     private FileTransformer transformer = new DefaultFileTransformer();
-    final JFileChooser fc = new JFileChooser("P:/Dokumente");
+    final JFileChooser fc = new JFileChooser("src/testfiles");
     private int chooseFile;
 
 

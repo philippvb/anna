@@ -21,7 +21,7 @@ public class Startup {
 
 
         myboundary.save(testfile);
-        myboundary.save(testfile);
+        //myboundary.save(testfile);
 
         myframe.init(myboundary);
 
