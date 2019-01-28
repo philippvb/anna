@@ -13,17 +13,22 @@ public class Startup {
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("MeineJpaPU");
-        FileController mycontroller = FileController.defaultinit(emf);
-        FileBoundary myboundary = new FileBoundary(mycontroller);
+        MainFrame myframe = new MainFrame();
+        FileBoundary myboundary = new FileBoundary(null, myframe);
+        FileController mycontroller = FileController.defaultinit(emf, myboundary);
+        myboundary.setController(mycontroller);
+
         File testfile = new File("src/testfiles/testpicture.jpg");
         File testfile2 = new File("src/testfiles/test.txt");
-        MainFrame myframe = new MainFrame();
 
 
-        myboundary.save(testfile);
+
+        // myboundary.save(testfile);
         //myboundary.save(testfile);
 
         myframe.init(myboundary);
+
+        // myframe.saveOrUpdate();
 
 
         /* myboundary.save(testfile);
@@ -62,5 +67,8 @@ public class Startup {
     + Data field size too small for pictures, also mime field to small for some values
     + updating a file
     - maybe getting id back when persisting a fileentity
+
+    - make boundary better
+
 
  */

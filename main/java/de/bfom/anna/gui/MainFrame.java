@@ -79,7 +79,6 @@ public class MainFrame implements ActionListener{
             chooseFile = fc.showSaveDialog(null);
             if (chooseFile == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fc.getSelectedFile();
-                System.out.println(selectedFile.getAbsolutePath());
                 boundary.save(selectedFile);
                 update.doClick();
             }
@@ -104,6 +103,14 @@ public class MainFrame implements ActionListener{
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public int saveOrUpdate(){
+        return JOptionPane.showOptionDialog(null,
+                "The filename already exists. Would you like to override the existing file or create a new one? ",
+                "Warning",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                    new String[]{"Override", "Create new One"}, null);
     }
 
 

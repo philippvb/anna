@@ -1,5 +1,6 @@
 package de.bfom.anna.business.file.controller;
 
+import de.bfom.anna.business.file.boundary.FileBoundary;
 import de.bfom.anna.business.file.daos.*;
 import de.bfom.anna.business.file.entity.FileEntity;
 import org.apache.commons.io.FilenameUtils;
@@ -16,37 +17,51 @@ public class FileController{
     Retrieve retriever;
     Delete deleter;
     Update updater;
+    FileBoundary myboundary;
 
 
 
     public FileController(EntityManagerFactory myfactory, Create saver, FileTransformer transformer,
-                          DefaultRetriever retriever, Delete deleter, Update updater){
+                          DefaultRetriever retriever, Delete deleter, Update updater, FileBoundary myboundary){
         this.myfactory = myfactory;
         this.saver = saver;
         this.transformer = transformer;
         this.retriever = retriever;
         this.deleter = deleter;
         this.updater = updater;
+        this.myboundary = myboundary;
     }
 
-    public static FileController defaultinit(EntityManagerFactory myfactory){
+    public static FileController defaultinit(EntityManagerFactory myfactory, FileBoundary myboundary){
         Create mysaver = new DefaultCreator(myfactory);
         FileTransformer mytransformer = new DefaultFileTransformer();
         DefaultRetriever myretriever = new DefaultRetriever(myfactory);
         Delete mydeleter = new DefaultDeletor(myfactory);
         Update myupdater = new DefaultUpdate(myfactory);
-        return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter, myupdater);
+        return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter, myupdater, myboundary);
     }
 
     public void persist(File file) throws RuntimeException{
+        FileEntity tosave = transformer.transform(file);
+        saver.save(tosave);
+    }
+
+    public void saveOrUpdate(File file){
         FileEntity tosave = transformer.transform(file);
         List<FileEntity> results = retriever.retrieve(FilenameUtils.removeExtension(file.getName()));
         if(results.isEmpty()){
             saver.save(tosave);
         }
         else{
-           tosave.setId(results.get(0).getId());
-           updater.update(tosave);
+            int decision = myboundary.saveOrUpdate();
+            if(decision == 0){
+                tosave.setId(results.get(0).getId());
+                updater.update(tosave);
+            }
+            else if(decision == 1){
+                tosave.setName(tosave.getName() + "1");
+                saver.save(tosave);
+            }
         }
     }
 

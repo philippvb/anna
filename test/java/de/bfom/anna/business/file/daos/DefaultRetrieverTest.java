@@ -22,7 +22,7 @@ class DefaultRetrieverTest {
     @BeforeEach
     void init(){
         myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
-        mycontroller = FileController.defaultinit(myfactory);
+        mycontroller = FileController.defaultinit(myfactory, null);
         ret = new DefaultRetriever(myfactory);
     }
 

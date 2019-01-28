@@ -1,5 +1,6 @@
 package de.bfom.anna.business.file.daos;
 
+import de.bfom.anna.business.file.boundary.FileBoundary;
 import de.bfom.anna.business.file.controller.FileController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ class DefaultCreatorTest {
     @BeforeEach
     void init(){
         myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
-        mycontroller = FileController.defaultinit(myfactory);
+        mycontroller = FileController.defaultinit(myfactory, null);
     }
 
     @Test
