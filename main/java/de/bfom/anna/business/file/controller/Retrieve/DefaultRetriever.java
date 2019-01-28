@@ -1,7 +1,7 @@
-package de.bfom.anna.business.file.daos;
+package de.bfom.anna.business.file.controller.Retrieve;
 
+import de.bfom.anna.business.file.controller.Retrieve.Retrieve;
 import de.bfom.anna.business.file.entity.FileEntity;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,7 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.util.List;
 
-public class DefaultRetriever implements Retrieve{
+public class DefaultRetriever implements Retrieve {
     private EntityManagerFactory myfactory;
 
     public DefaultRetriever(EntityManagerFactory myfactory){

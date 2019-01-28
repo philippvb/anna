@@ -2,6 +2,8 @@ package de.bfom.anna.business.file.controller;
 
 
 import de.bfom.anna.business.file.entity.FileEntity;
+import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
+import de.bfom.anna.business.file.entity.Transform.FileTransformer;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package de.bfom.anna.business.file.controller;
+package de.bfom.anna.business.file.entity.Transform;
 
 import de.bfom.anna.business.file.entity.FileEntity;
 

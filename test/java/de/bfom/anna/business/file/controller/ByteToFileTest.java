@@ -3,7 +3,7 @@ package de.bfom.anna.business.file.controller;
 
 
 import de.bfom.anna.business.file.entity.FileEntity;
-import org.junit.jupiter.api.BeforeAll;
+import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

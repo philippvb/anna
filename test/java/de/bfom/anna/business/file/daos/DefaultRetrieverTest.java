@@ -1,6 +1,7 @@
 package de.bfom.anna.business.file.daos;
 
 import de.bfom.anna.business.file.controller.FileController;
+import de.bfom.anna.business.file.controller.Retrieve.DefaultRetriever;
 import de.bfom.anna.business.file.entity.FileEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

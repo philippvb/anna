@@ -1,8 +1,8 @@
 package de.bfom.anna.gui;
 
 import de.bfom.anna.business.file.boundary.FileBoundary;
-import de.bfom.anna.business.file.controller.DefaultFileTransformer;
-import de.bfom.anna.business.file.controller.FileTransformer;
+import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
+import de.bfom.anna.business.file.entity.Transform.FileTransformer;
 
 import javax.swing.*;
 import java.awt.*;

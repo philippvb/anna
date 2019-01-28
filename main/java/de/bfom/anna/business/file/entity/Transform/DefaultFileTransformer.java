@@ -1,4 +1,4 @@
-package de.bfom.anna.business.file.controller;
+package de.bfom.anna.business.file.entity.Transform;
 
 import de.bfom.anna.business.file.entity.FileEntity;
 import org.apache.tika.Tika;
@@ -7,11 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-import java.util.Calendar;
-import java.util.TimeZone;
 
-
-public class DefaultFileTransformer implements FileTransformer{
+public class DefaultFileTransformer implements FileTransformer {
 
     private FileToByte transformer = new FileToByte();
     private ByteToFile transformerToByte = new ByteToFile();
