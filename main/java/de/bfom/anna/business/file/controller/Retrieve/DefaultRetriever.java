@@ -2,6 +2,7 @@ package de.bfom.anna.business.file.controller.Retrieve;
 
 import de.bfom.anna.business.file.controller.Retrieve.Retrieve;
 import de.bfom.anna.business.file.entity.FileEntity;
+import de.bfom.anna.business.file.entity.ReducedFileEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -47,5 +48,16 @@ public class DefaultRetriever implements Retrieve {
                 FileEntity.class);
         List<FileEntity> results = q.getResultList();
         return results;
+    }
+
+    public List<ReducedFileEntity> retrieveAllReduced(){
+        EntityManager em = myfactory.createEntityManager();
+        Query q = em.createNativeQuery("SELECT files.name, files.mime, files.created FROM files", FileEntity.class);
+        List<FileEntity> results = q.getResultList();
+        List<ReducedFileEntity> reducedResults = null;
+        for(int i = 0; i < results.size(); i++){
+            reducedResults.add(new ReducedFileEntity(results.get(i)));
+        }
+        return reducedResults;
     }
 }
