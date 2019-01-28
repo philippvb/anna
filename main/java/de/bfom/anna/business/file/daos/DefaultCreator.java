@@ -1,25 +1,26 @@
 package de.bfom.anna.business.file.daos;
 
+
 import de.bfom.anna.business.file.entity.FileEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-public class RetrieveByID {
+public class DefaultCreator implements Create {
     private EntityManagerFactory myfactory;
 
-    public RetrieveByID(EntityManagerFactory myfactory){
+    public DefaultCreator(EntityManagerFactory myfactory){
         this.myfactory = myfactory;
     }
 
-    public FileEntity retrieve(int id){
+    @Override
+    public void save(FileEntity file) throws RuntimeException{
         EntityManager em = myfactory.createEntityManager();
         EntityTransaction tx = null;
-        FileEntity retobject = null;
         try {
             tx = em.getTransaction();
             tx.begin();
-            retobject = em.find(FileEntity.class, id);
+            em.persist(file);
             tx.commit();
         } catch( RuntimeException ex ) {
             if( tx != null && tx.isActive() ) tx.rollback();
@@ -27,6 +28,5 @@ public class RetrieveByID {
         } finally {
             em.close();
         }
-        return retobject;
     }
 }

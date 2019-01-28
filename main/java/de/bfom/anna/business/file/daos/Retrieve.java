@@ -4,6 +4,9 @@ import de.bfom.anna.business.file.entity.FileEntity;
 
 import java.util.List;
 
-public interface GetAll {
-    public List<FileEntity> getAll();
+public interface Retrieve {
+
+    public FileEntity retrieve(int id);
+
+    public List<FileEntity> retrieveAll();
 }

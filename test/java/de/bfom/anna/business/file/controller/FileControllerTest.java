@@ -14,7 +14,7 @@ class FileControllerTest {
     private FileController mycontroller;
     private Create mysaver;
     private FileTransformer mytransformer;
-    private RetrieveByID myretriever;
+    private DefaultRetriever myretriever;
     private Delete mydeleter;
 
     @BeforeAll

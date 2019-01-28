@@ -3,7 +3,6 @@ package de.bfom.anna.business.file.controller;
 import de.bfom.anna.business.file.daos.*;
 import de.bfom.anna.business.file.entity.FileEntity;
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.File;
 import java.util.List;
 
@@ -12,32 +11,29 @@ public class FileController{
     EntityManagerFactory myfactory;
     Create saver;
     FileTransformer transformer;
-    RetrieveByID retriever;
+    Retrieve retriever;
     Delete deleter;
     Update updater;
-    GetAll getall;
 
 
 
     public FileController(EntityManagerFactory myfactory, Create saver, FileTransformer transformer,
-                          RetrieveByID retriever, Delete deleter, Update updater, GetAll mygetter){
+                          DefaultRetriever retriever, Delete deleter, Update updater){
         this.myfactory = myfactory;
         this.saver = saver;
         this.transformer = transformer;
         this.retriever = retriever;
         this.deleter = deleter;
         this.updater = updater;
-        this.getall = mygetter;
     }
 
     public static FileController defaultinit(EntityManagerFactory myfactory){
-        Create mysaver = new CreateFile(myfactory);
+        Create mysaver = new DefaultCreator(myfactory);
         FileTransformer mytransformer = new DefaultFileTransformer();
-        RetrieveByID myretriever = new RetrieveByID(myfactory);
-        Delete mydeleter = new DeleteFile(myfactory);
+        DefaultRetriever myretriever = new DefaultRetriever(myfactory);
+        Delete mydeleter = new DefaultDeletor(myfactory);
         Update myupdater = new DefaultUpdate(myfactory);
-        GetAll mygetter = new GetAllQuery(myfactory);
-        return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter, myupdater, mygetter);
+        return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter, myupdater);
     }
 
     public void persist(File file) throws RuntimeException{
@@ -73,7 +69,7 @@ public class FileController{
 
     }
 
-    public List<FileEntity> getall(){
-        return getall.getAll();
+    public List<FileEntity> retrieveAll(){
+        return retriever.retrieveAll();
     }
 }

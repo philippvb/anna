@@ -30,6 +30,6 @@ public class FileBoundary {
     }
 
     public List<FileEntity> getAll(){
-        return mycontroller.getall();
+        return mycontroller.retrieveAll();
     }
 }

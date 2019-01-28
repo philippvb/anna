@@ -2,6 +2,7 @@ package de.bfom.anna.business.file.daos;
 
 import de.bfom.anna.business.file.controller.FileController;
 import de.bfom.anna.business.file.entity.FileEntity;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RetrieveByIDTest {
+class DefaultDeletorTest {
     EntityManagerFactory myfactory;
     FileController mycontroller;
     FileEntity del;
@@ -25,11 +26,14 @@ class RetrieveByIDTest {
     }
 
     @Test
-    void retrieve() {
-        assertEquals(null, mycontroller.retrieve(1));
+    void delete() {
+        // only works with empty table!!!
         mycontroller.persist(new File("src/testfiles/test.txt"));
-        assertTrue(mycontroller.retrieve(1) != null);
-        mycontroller.saveDeletion(1);
-        assertEquals(null, mycontroller.retrieve(1));
+        del = mycontroller.retrieve(1);
+        assertTrue(del != null);
+        assertTrue(mycontroller.saveDeletion(1));
+        del = mycontroller.retrieve(1);
+        assertTrue(del == null);
+        assertFalse(mycontroller.saveDeletion(1));
     }
 }
