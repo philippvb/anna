@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class MainFrame implements ActionListener{
@@ -20,6 +21,8 @@ public class MainFrame implements ActionListener{
     private JButton update;
     private JButton save;
     private FileTransformer transformer = new DefaultFileTransformer();
+    final JFileChooser fc = new JFileChooser("P:/Dokumente");
+    private int chooseFile;
 
 
 
@@ -51,6 +54,7 @@ public class MainFrame implements ActionListener{
         mainframe.setVisible(true);
 
         mainframe.getContentPane().add(update);
+        mainframe.getContentPane().add(save);
         mainframe.getContentPane().add(tablecontainer);
     }
 
@@ -69,15 +73,28 @@ public class MainFrame implements ActionListener{
             });
             tablecontainer = new JScrollPane(table);
             mainframe.getContentPane().add(tablecontainer);
-            mainframe.invalidate();
-            mainframe.validate();
-            mainframe.repaint();
+            this.refresh();
+        }
+        if(e.getSource() == save){
+            chooseFile = fc.showSaveDialog(null);
+            if (chooseFile == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fc.getSelectedFile();
+                System.out.println(selectedFile.getAbsolutePath());
+                boundary.save(selectedFile);
+                update.doClick();
+            }
         }
 
 
 
     }
 
+
+    public void refresh(){
+        mainframe.invalidate();
+        mainframe.validate();
+        mainframe.repaint();
+    }
 
     public void openfile(int id){
         Desktop d = Desktop.getDesktop();
