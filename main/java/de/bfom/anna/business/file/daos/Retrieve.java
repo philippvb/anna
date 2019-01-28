@@ -9,4 +9,6 @@ public interface Retrieve {
     public FileEntity retrieve(int id);
 
     public List<FileEntity> retrieveAll();
+
+    public  List<FileEntity> retrieve(String name);
 }

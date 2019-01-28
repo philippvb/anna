@@ -18,10 +18,12 @@ public class Startup {
         File testfile = new File("src/testfiles/testpicture.jpg");
         File testfile2 = new File("src/testfiles/test.txt");
         MainFrame myframe = new MainFrame();
-        myframe.init(myboundary);
+
 
         myboundary.save(testfile);
-        myboundary.save(testfile2);
+        myboundary.save(testfile);
+
+        myframe.init(myboundary);
 
 
         /* myboundary.save(testfile);

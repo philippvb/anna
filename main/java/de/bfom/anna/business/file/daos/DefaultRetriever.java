@@ -1,6 +1,8 @@
 package de.bfom.anna.business.file.daos;
 
 import de.bfom.anna.business.file.entity.FileEntity;
+import org.apache.commons.io.FilenameUtils;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -35,6 +37,14 @@ public class DefaultRetriever implements Retrieve{
     public List<FileEntity> retrieveAll(){
         EntityManager em = myfactory.createEntityManager();
         Query q = em.createNativeQuery("SELECT * FROM files", FileEntity.class);
+        List<FileEntity> results = q.getResultList();
+        return results;
+    }
+
+    public List<FileEntity> retrieve(String name){
+        EntityManager em = myfactory.createEntityManager();
+        Query q = em.createNativeQuery("SELECT * FROM files Where files.name = \" "
+                        + name + "\"", FileEntity.class);
         List<FileEntity> results = q.getResultList();
         return results;
     }

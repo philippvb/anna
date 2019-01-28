@@ -2,6 +2,8 @@ package de.bfom.anna.business.file.controller;
 
 import de.bfom.anna.business.file.daos.*;
 import de.bfom.anna.business.file.entity.FileEntity;
+import org.apache.commons.io.FilenameUtils;
+
 import javax.persistence.*;
 import java.io.File;
 import java.util.List;
@@ -38,7 +40,14 @@ public class FileController{
 
     public void persist(File file) throws RuntimeException{
         FileEntity tosave = transformer.transform(file);
-        saver.save(tosave);
+        List<FileEntity> results = retriever.retrieve(FilenameUtils.removeExtension(file.getName()));
+        if(results.isEmpty()){
+            saver.save(tosave);
+        }
+        else{
+           tosave.setId(results.get(0).getId());
+           updater.update(tosave);
+        }
     }
 
     public File retrieveToFile(int id){
