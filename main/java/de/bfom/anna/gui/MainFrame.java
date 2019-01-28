@@ -1,7 +1,6 @@
 package de.bfom.anna.gui;
 
 import de.bfom.anna.business.file.boundary.FileBoundary;
-import de.bfom.anna.business.file.controller.ByteToFile;
 import de.bfom.anna.business.file.controller.DefaultFileTransformer;
 import de.bfom.anna.business.file.controller.FileTransformer;
 
@@ -28,13 +27,13 @@ public class MainFrame implements ActionListener{
 
     public void init(FileBoundary myboundary){
         this.boundary = myboundary;
-        entityTable = new EntityTable(myboundary.getAll());
+        entityTable = new EntityTable(myboundary.retrieveAll());
         table = new JTable(entityTable);
         table.setFillsViewportHeight(true);
         tablecontainer = new JScrollPane(table);
         update = new JButton("Update");
         update.addActionListener(this);
-        save = new JButton("save");
+        save = new JButton("persist");
         save.addActionListener(this);
 
         table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,7 +61,7 @@ public class MainFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == update){
             mainframe.getContentPane().remove(tablecontainer);
-            entityTable = new EntityTable(boundary.getAll());
+            entityTable = new EntityTable(boundary.retrieveAll());
             table = new JTable(entityTable);
             table.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
@@ -79,7 +78,7 @@ public class MainFrame implements ActionListener{
             chooseFile = fc.showSaveDialog(null);
             if (chooseFile == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fc.getSelectedFile();
-                boundary.save(selectedFile);
+                boundary.persist(selectedFile);
                 update.doClick();
             }
         }
@@ -105,7 +104,7 @@ public class MainFrame implements ActionListener{
         }
     }
 
-    public int saveOrUpdate(){
+    public int persistOrUpdate(){
         return JOptionPane.showOptionDialog(null,
                 "The filename already exists. Would you like to override the existing file or create a new one? ",
                 "Warning",

@@ -2,7 +2,6 @@ package de.bfom.anna.business.file.daos;
 
 import de.bfom.anna.business.file.controller.FileController;
 import de.bfom.anna.business.file.entity.FileEntity;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,9 +30,9 @@ class DefaultDeletorTest {
         mycontroller.persist(new File("src/testfiles/test.txt"));
         del = mycontroller.retrieve(1);
         assertTrue(del != null);
-        assertTrue(mycontroller.saveDeletion(1));
+        assertTrue(mycontroller.delete(1));
         del = mycontroller.retrieve(1);
         assertTrue(del == null);
-        assertFalse(mycontroller.saveDeletion(1));
+        assertFalse(mycontroller.delete(1));
     }
 }

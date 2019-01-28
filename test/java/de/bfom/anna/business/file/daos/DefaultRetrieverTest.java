@@ -31,7 +31,7 @@ class DefaultRetrieverTest {
         assertEquals(null, mycontroller.retrieve(1));
         mycontroller.persist(new File("src/testfiles/test.txt"));
         assertTrue(mycontroller.retrieve(1) != null);
-        mycontroller.saveDeletion(1);
+        mycontroller.delete(1);
         assertEquals(null, mycontroller.retrieve(1));
     }
 

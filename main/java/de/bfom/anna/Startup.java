@@ -23,15 +23,15 @@ public class Startup {
 
 
 
-        // myboundary.save(testfile);
-        //myboundary.save(testfile);
+        // myboundary.persist(testfile);
+        //myboundary.persist(testfile);
 
         myframe.init(myboundary);
 
-        // myframe.saveOrUpdate();
+        // myframe.persistOrUpdate();
 
 
-        /* myboundary.save(testfile);
+        /* myboundary.persist(testfile);
         Desktop d = Desktop.getDesktop();
         try{
             d.open(myboundary.retrieve(1));
@@ -69,6 +69,8 @@ public class Startup {
     - maybe getting id back when persisting a fileentity
 
     - make boundary better
-
+    - add constants class
+    - property xml file
+    - get all preview (except of files) maybe create wrapper class around FileEntity
 
  */
