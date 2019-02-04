@@ -4,10 +4,10 @@ import de.bfom.anna.business.file.controller.Retrieve.Retrieve;
 import de.bfom.anna.business.file.entity.FileEntity;
 import de.bfom.anna.business.file.entity.ReducedFileEntity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DefaultRetriever implements Retrieve {
@@ -52,12 +52,17 @@ public class DefaultRetriever implements Retrieve {
 
     public List<ReducedFileEntity> retrieveAllReduced(){
         EntityManager em = myfactory.createEntityManager();
-        Query q = em.createNativeQuery("SELECT files.name, files.mime, files.created FROM files", FileEntity.class);
-        List<FileEntity> results = q.getResultList();
-        List<ReducedFileEntity> reducedResults = null;
-        for(int i = 0; i < results.size(); i++){
-            reducedResults.add(new ReducedFileEntity(results.get(i)));
+        List results = em.createNativeQuery("SELECT id from hibernate_test.files FROM files").getResultList();
+        List<ReducedFileEntity> reducedResults = new ArrayList<ReducedFileEntity>(); // right type of list??
+        for(Object result : results){
+            System.out.println(result);
         }
+        /*System.out.println(results.size());
+        for(Object[] result : results){
+            reducedResults.add(new ReducedFileEntity(FileEntity.newFileEntity().id((int)result[0]).
+                    //name((String) result[1]).mime((String) result[2]).created((LocalDateTime) result[3]).
+                    build()));
+        }*/
         return reducedResults;
     }
 }
