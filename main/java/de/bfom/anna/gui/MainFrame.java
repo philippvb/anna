@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MainFrame implements ActionListener{
     private JFrame mainframe = new JFrame();
     private JTable table;
-    private EntityTable entityTable;
+    private ReducedFileEntityTable reducedTable;
     private JScrollPane tablecontainer;
     private FileBoundary boundary;
     private JButton update;
@@ -27,8 +27,8 @@ public class MainFrame implements ActionListener{
 
     public void init(FileBoundary myboundary){
         this.boundary = myboundary;
-        entityTable = new EntityTable(myboundary.retrieveAll());
-        table = new JTable(entityTable);
+        reducedTable = new ReducedFileEntityTable(myboundary.retrieveAllReduced());
+        table = new JTable(reducedTable);
         table.setFillsViewportHeight(true);
         tablecontainer = new JScrollPane(table);
         update = new JButton("Update");
@@ -61,8 +61,8 @@ public class MainFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == update){
             mainframe.getContentPane().remove(tablecontainer);
-            entityTable = new EntityTable(boundary.retrieveAll());
-            table = new JTable(entityTable);
+            reducedTable = new ReducedFileEntityTable(boundary.retrieveAllReduced());
+            table = new JTable(reducedTable);
             table.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,7 +97,8 @@ public class MainFrame implements ActionListener{
     public void openfile(int id){
         Desktop d = Desktop.getDesktop();
         try{
-            d.open(transformer.transformToFile(entityTable.getEntity(id)));
+            d.open(transformer.transformToFile(boundary.retrieve(id)));
+            System.out.println("Accessed");
         }
         catch (IOException e){
             e.printStackTrace();

@@ -3,9 +3,10 @@ package de.bfom.anna.gui;
 import de.bfom.anna.business.file.entity.FileEntity;
 import de.bfom.anna.business.file.entity.ReducedFileEntity;
 
+import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class ReducedFileEntityTable {
+public class ReducedFileEntityTable extends AbstractTableModel {
     private String[] columnNames = {"Name", "Type", "created"};
     private List<ReducedFileEntity> data;
 
