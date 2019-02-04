@@ -1,7 +1,7 @@
 package de.bfom.anna.business.file.entity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "FILES")

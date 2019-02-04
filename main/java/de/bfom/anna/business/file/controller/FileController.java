@@ -10,6 +10,7 @@ import de.bfom.anna.business.file.controller.Retrieve.Retrieve;
 import de.bfom.anna.business.file.controller.Update.DefaultUpdate;
 import de.bfom.anna.business.file.controller.Update.Update;
 import de.bfom.anna.business.file.entity.FileEntity;
+import de.bfom.anna.business.file.entity.ReducedFileEntity;
 import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
 import de.bfom.anna.business.file.entity.Transform.FileTransformer;
 import org.apache.commons.io.FilenameUtils;
@@ -92,6 +93,10 @@ public class FileController{
 
     public List<FileEntity> retrieveAll(){
         return retriever.retrieveAll();
+    }
+
+    public List<ReducedFileEntity> retrieveAllReduced(){
+        return retriever.retrieveAllReduced();
     }
 
 

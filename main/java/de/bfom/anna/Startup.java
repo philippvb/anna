@@ -8,8 +8,11 @@ import javax.persistence.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
 public class Startup {
+
+    public static final Properties properties = LoadProperties.getProperties("src/main/resources/properties/config.properties");
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("MeineJpaPU");
@@ -22,11 +25,17 @@ public class Startup {
         File testfile2 = new File("src/testfiles/test.txt");
 
 
+        mycontroller.retrieveAllReduced();
 
-        // myboundary.persist(testfile);
+        //myboundary.persist(testfile);
         //myboundary.persist(testfile);
 
         myframe.init(myboundary);
+
+
+
+
+        // myboundary.retrieveAllReduced();
 
         // myframe.persistOrUpdate();
 

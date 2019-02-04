@@ -3,6 +3,7 @@ package de.bfom.anna.business.file.daos;
 import de.bfom.anna.business.file.controller.FileController;
 import de.bfom.anna.business.file.controller.Retrieve.DefaultRetriever;
 import de.bfom.anna.business.file.entity.FileEntity;
+import de.bfom.anna.business.file.entity.ReducedFileEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,5 +42,14 @@ class DefaultRetrieverTest {
         mycontroller.persist(new File("src/testfiles/test.txt"));
         mycontroller.persist(new File("src/testfiles/test.txt"));
         assertFalse(ret.retrieve("test").isEmpty());
+    }
+
+    @Test
+    void retrieveAllReduced(){
+        assertEquals(0, mycontroller.retrieveAll().size());
+        mycontroller.persist(new File("src/testfiles/test.txt"));
+        assertEquals(ReducedFileEntity.class, mycontroller.retrieveAllReduced().get(0).getClass());
+        mycontroller.delete(1);
+
     }
 }

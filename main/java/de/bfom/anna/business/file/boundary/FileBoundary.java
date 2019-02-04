@@ -2,6 +2,7 @@ package de.bfom.anna.business.file.boundary;
 
 import de.bfom.anna.business.file.controller.FileController;
 import de.bfom.anna.business.file.entity.FileEntity;
+import de.bfom.anna.business.file.entity.ReducedFileEntity;
 import de.bfom.anna.gui.MainFrame;
 
 import java.io.File;
@@ -33,6 +34,10 @@ public class FileBoundary {
 
     public List<FileEntity> retrieveAll(){
         return mycontroller.retrieveAll();
+    }
+
+    public List<ReducedFileEntity> retrieveAllReduced(){
+        return mycontroller.retrieveAllReduced();
     }
 
 
