@@ -54,11 +54,7 @@ public class DefaultRetriever implements Retrieve {
     public List<ReducedFileEntity> retrieveAllReduced(){
         EntityManager em = myfactory.createEntityManager();
         List<Object[]> results = em.createNativeQuery("SELECT id, name, mime, created FROM files").getResultList();
-        List<ReducedFileEntity> reducedResults = new ArrayList<ReducedFileEntity>(); // right type of list??
-        System.out.println(results.size());
-        for(Object[] result : results){
-            System.out.println(result[0] +"   " +  result[1] + "  " + result[2] + "   " + result[3]);
-        }
+        List<ReducedFileEntity> reducedResults = new ArrayList<>(); // right type of list??
 
         for(Object[] result : results){
             reducedResults.add(new ReducedFileEntity(FileEntity.newFileEntity().id((int)result[0]).
@@ -66,6 +62,7 @@ public class DefaultRetriever implements Retrieve {
                     created(((Timestamp) result[3]).toLocalDateTime()).
                     build()));
         }
+
         return reducedResults;
     }
 }
