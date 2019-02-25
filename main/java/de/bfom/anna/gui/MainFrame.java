@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -39,8 +40,17 @@ public class MainFrame implements ActionListener{
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int row = table.rowAtPoint(evt.getPoint());
-                openfile(row);
+                if(evt.getButton() == MouseEvent.BUTTON1){
+                    int row = table.rowAtPoint(evt.getPoint());
+                    openfile(row + 1);
+                }
+                else if(evt.getButton() == MouseEvent.BUTTON3) {
+                    int choice = delete();
+                    if (choice == JFileChooser.APPROVE_OPTION) {
+                        boundary.delete(table.rowAtPoint(evt.getPoint()) + 1);
+                        update.doClick();
+                    }
+                }
             }
         });
 
@@ -66,8 +76,19 @@ public class MainFrame implements ActionListener{
             table.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    int row = table.rowAtPoint(evt.getPoint());
-                    openfile(row);
+                    if(evt.getButton() == MouseEvent.BUTTON1){
+                        int row = table.rowAtPoint(evt.getPoint());
+                        openfile(row + 1);
+                    }
+                    else if(evt.getButton() == MouseEvent.BUTTON3){
+                        int choice = delete();
+                        if(choice == JFileChooser.APPROVE_OPTION){
+                            boundary.delete(table.rowAtPoint(evt.getPoint()) + 1);
+                            update.doClick();
+                        }
+
+                    }
+
                 }
             });
             tablecontainer = new JScrollPane(table);
@@ -111,6 +132,14 @@ public class MainFrame implements ActionListener{
                 "Warning",
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
                     new String[]{"Override", "Create new One"}, null);
+    }
+
+    public int delete(){
+        return JOptionPane.showOptionDialog(null,
+                "Would you like to delete this file?",
+                "Warning",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                new String[]{"YES", "No"}, null);
     }
 
 
