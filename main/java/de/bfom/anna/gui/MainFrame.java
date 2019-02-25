@@ -15,7 +15,7 @@ import java.io.IOException;
 public class MainFrame implements ActionListener{
     private JFrame mainframe = new JFrame();
     private JTable table;
-    public ReducedFileEntityTable reducedTable;
+    private ReducedFileEntityTable reducedTable;
     private JScrollPane tablecontainer;
     private FileBoundary boundary;
     private JButton update;
@@ -119,7 +119,6 @@ public class MainFrame implements ActionListener{
         Desktop d = Desktop.getDesktop();
         try{
             d.open(transformer.transformToFile(boundary.retrieve(id)));
-            System.out.println("Accessed");
         }
         catch (IOException e){
             e.printStackTrace();
@@ -143,7 +142,6 @@ public class MainFrame implements ActionListener{
     }
 
     public int getFileId(int row){
-        System.out.println(reducedTable.getData().get(row).getID());
         return reducedTable.getData().get(row).getID();
     }
 
