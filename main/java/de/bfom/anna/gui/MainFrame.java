@@ -15,7 +15,7 @@ import java.io.IOException;
 public class MainFrame implements ActionListener{
     private JFrame mainframe = new JFrame();
     private JTable table;
-    private ReducedFileEntityTable reducedTable;
+    public ReducedFileEntityTable reducedTable;
     private JScrollPane tablecontainer;
     private FileBoundary boundary;
     private JButton update;
@@ -42,12 +42,12 @@ public class MainFrame implements ActionListener{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if(evt.getButton() == MouseEvent.BUTTON1){
                     int row = table.rowAtPoint(evt.getPoint());
-                    openfile(row + 1);
+                    openfile(getFileId(row));
                 }
                 else if(evt.getButton() == MouseEvent.BUTTON3) {
                     int choice = delete();
                     if (choice == JFileChooser.APPROVE_OPTION) {
-                        boundary.delete(table.rowAtPoint(evt.getPoint()) + 1);
+                        boundary.delete(getFileId(table.rowAtPoint(evt.getPoint())));
                         update.doClick();
                     }
                 }
@@ -78,12 +78,12 @@ public class MainFrame implements ActionListener{
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     if(evt.getButton() == MouseEvent.BUTTON1){
                         int row = table.rowAtPoint(evt.getPoint());
-                        openfile(row + 1);
+                        openfile(getFileId(row));
                     }
                     else if(evt.getButton() == MouseEvent.BUTTON3){
                         int choice = delete();
                         if(choice == JFileChooser.APPROVE_OPTION){
-                            boundary.delete(table.rowAtPoint(evt.getPoint()) + 1);
+                            boundary.delete(getFileId(table.rowAtPoint(evt.getPoint())));
                             update.doClick();
                         }
 
@@ -140,6 +140,11 @@ public class MainFrame implements ActionListener{
                 "Warning",
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 new String[]{"YES", "No"}, null);
+    }
+
+    public int getFileId(int row){
+        System.out.println(reducedTable.getData().get(row).getID());
+        return reducedTable.getData().get(row).getID();
     }
 
 

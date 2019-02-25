@@ -55,7 +55,6 @@ public class DefaultRetriever implements Retrieve {
         EntityManager em = myfactory.createEntityManager();
         List<Object[]> results = em.createNativeQuery("SELECT id, name, mime, created FROM files").getResultList();
         List<ReducedFileEntity> reducedResults = new ArrayList<>(); // right type of list??
-
         for(Object[] result : results){
             reducedResults.add(new ReducedFileEntity(FileEntity.newFileEntity().id((int)result[0]).
                     name((String) result[1]).mime((String) result[2]).

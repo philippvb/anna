@@ -8,6 +8,11 @@ import java.util.List;
 
 public class ReducedFileEntityTable extends AbstractTableModel {
     private String[] columnNames = {"Name", "Type", "created"};
+
+    public List<ReducedFileEntity> getData() {
+        return data;
+    }
+
     private List<ReducedFileEntity> data;
 
     public ReducedFileEntityTable(List<ReducedFileEntity> data){
@@ -47,4 +52,6 @@ public class ReducedFileEntityTable extends AbstractTableModel {
     public ReducedFileEntity getEntity(int id){
         return data.get(id);
     }
+
+
 }

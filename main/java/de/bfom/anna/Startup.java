@@ -35,6 +35,7 @@ public class Startup {
 
 
 
+
         // myboundary.retrieveAllReduced();
 
         // myframe.persistOrUpdate();
@@ -78,8 +79,11 @@ public class Startup {
     - maybe getting id back when persisting a fileentity
 
     - make boundary better
-    - add constants class
-    - property xml file
-    - get all preview (except of files) maybe create wrapper class around FileEntity
+    - add delete to GUI
+
+    + add constants class (see below)
+    + property xml file (changed to property file)
+    + get all preview (except of files) maybe create wrapper class around FileEntity
+    - get reducedFileEntitymapping better
 
  */

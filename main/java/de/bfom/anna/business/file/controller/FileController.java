@@ -72,7 +72,7 @@ public class FileController{
                 updater.update(tosave);
             }
             else if(decision == 1){
-                tosave.setName(tosave.getName() + "1");
+                tosave.setName(tosave.getName() + 1);
                 creator.save(tosave);
             }
         }

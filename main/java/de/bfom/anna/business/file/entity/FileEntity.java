@@ -75,6 +75,7 @@ public class FileEntity {
     }
 
     private FileEntity(Builder b){
+        this.setId(b.id);
         this.setName(b.name);
         this.setMime(b.mime);
         this.setCreated(b.created);
