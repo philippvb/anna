@@ -59,7 +59,7 @@ public class DefaultRetriever implements Retrieve {
             reducedResults.add(new ReducedFileEntity(FileEntity.newFileEntity().id((int)result[0]).
                     name((String) result[1]).mime((String) result[2]).
                     created(((Timestamp) result[3]).toLocalDateTime()).
-                    build()));
+                    buildWithID()));
         }
 
         return reducedResults;

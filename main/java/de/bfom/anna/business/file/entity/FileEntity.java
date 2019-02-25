@@ -75,14 +75,18 @@ public class FileEntity {
     }
 
     private FileEntity(Builder b){
-        this.setId(b.id);
         this.setName(b.name);
         this.setMime(b.mime);
         this.setCreated(b.created);
         this.setFile(b.file);
     }
+    private static FileEntity FileEntityWithID(Builder b){
+        FileEntity ent = new FileEntity(b);
+        ent.setId(b.id);
+        return ent;
+    }
 
-    public FileEntity(){
+    private FileEntity(){
 
     }
 
@@ -121,5 +125,7 @@ public class FileEntity {
         public FileEntity build(){
             return new FileEntity(this);
         }
+
+        public FileEntity buildWithID(){ return FileEntityWithID(this);}
     }
 }

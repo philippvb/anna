@@ -1,6 +1,7 @@
-package de.bfom.anna.business.file.daos;
+package de.bfom.anna.business.file.controller;
 
 import de.bfom.anna.business.file.controller.FileController;
+import de.bfom.anna.business.file.entity.FileEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,9 +12,11 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DefaultCreatorTest {
+class DefaultDeletorTest {
     EntityManagerFactory myfactory;
     FileController mycontroller;
+    FileEntity del;
+
 
     @BeforeEach
     void init(){
@@ -22,11 +25,14 @@ class DefaultCreatorTest {
     }
 
     @Test
-    void save() {
-        assertEquals(null, mycontroller.retrieve(1));
+    void delete() {
+        // only works with empty table!!!
         mycontroller.persist(new File("src/testfiles/test.txt"));
-        assertTrue(mycontroller.retrieve(1) != null);
-        mycontroller.delete(1);
-        assertEquals(null, mycontroller.retrieve(1));
+        del = mycontroller.retrieve(1);
+        assertTrue(del != null);
+        assertTrue(mycontroller.delete(1));
+        del = mycontroller.retrieve(1);
+        assertTrue(del == null);
+        assertFalse(mycontroller.delete(1));
     }
 }

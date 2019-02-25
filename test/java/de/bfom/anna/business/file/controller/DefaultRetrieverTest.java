@@ -1,4 +1,4 @@
-package de.bfom.anna.business.file.daos;
+package de.bfom.anna.business.file.controller;
 
 import de.bfom.anna.business.file.controller.FileController;
 import de.bfom.anna.business.file.controller.Retrieve.DefaultRetriever;

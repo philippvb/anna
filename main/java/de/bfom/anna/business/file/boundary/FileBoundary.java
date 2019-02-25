@@ -23,32 +23,19 @@ public class FileBoundary {
         mycontroller.persistOrUpdate(file);
     }
 
-    public void forcedPersist(File file){
-        mycontroller.persist(file);
-    }
-
-
-    public FileEntity retrieve(int id){
-        return mycontroller.retrieve(id);
-    }
-
-    public List<FileEntity> retrieveAll(){
-        return mycontroller.retrieveAll();
+    public File retrieveFile(int id){
+        return mycontroller.retrieveFile(id);
     }
 
     public List<ReducedFileEntity> retrieveAllReduced(){
         return mycontroller.retrieveAllReduced();
     }
 
-
     public boolean delete(int id){
         return mycontroller.delete(id);
     }
 
 
-    public void update(File file, int id){
-        mycontroller.update(file, id);
-    }
 
     public int persistOrUpdate(){
         return mainframe.persistOrUpdate();

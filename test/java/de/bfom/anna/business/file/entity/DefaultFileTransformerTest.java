@@ -1,13 +1,11 @@
-package de.bfom.anna.business.file.controller;
+package de.bfom.anna.business.file.entity;
 
 
 import de.bfom.anna.business.file.entity.FileEntity;
 import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
 import de.bfom.anna.business.file.entity.Transform.FileTransformer;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class DefaultFileTransformerTest {
@@ -20,4 +18,5 @@ class DefaultFileTransformerTest {
         assertEquals("test.txt", myentity.getName());
         assertEquals("text/plain", myentity.getMime());
     }
+
 }

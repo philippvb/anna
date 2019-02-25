@@ -11,6 +11,7 @@ import de.bfom.anna.business.file.controller.Update.DefaultUpdate;
 import de.bfom.anna.business.file.controller.Update.Update;
 import de.bfom.anna.business.file.entity.FileEntity;
 import de.bfom.anna.business.file.entity.ReducedFileEntity;
+import de.bfom.anna.business.file.entity.Transform.ByteToFile;
 import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
 import de.bfom.anna.business.file.entity.Transform.FileTransformer;
 import org.apache.commons.io.FilenameUtils;
@@ -72,7 +73,7 @@ public class FileController{
                 updater.update(tosave);
             }
             else if(decision == 1){
-                tosave.setName(tosave.getName() + 1);
+                tosave.setName(tosave.getName() + 1); // 1 is dummy value
                 creator.save(tosave);
             }
         }
@@ -89,6 +90,11 @@ public class FileController{
 
     public FileEntity retrieve(int id){
         return retriever.retrieve(id);
+    }
+
+    public File retrieveFile(int id){
+        FileEntity retrieved = retriever.retrieve(id);
+        return ByteToFile.transform(retrieved);
     }
 
     public List<FileEntity> retrieveAll(){

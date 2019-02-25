@@ -8,9 +8,7 @@ public class ReducedFileEntity {
     public ReducedFileEntity(FileEntity fileEntity){
         this.fileEntity = fileEntity;
     }
-
-
-
+    
     public int getID(){
         return fileEntity.getId();
     }

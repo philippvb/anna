@@ -1,17 +1,18 @@
-package de.bfom.anna.business.file.controller;
+package de.bfom.anna.business.file.entity;
 
 import de.bfom.anna.business.file.entity.Transform.FileToByte;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import static org.junit.jupiter.api.Assertions.*;
 
 class FileToByteTest {
 
     @Test
     void tobyte(){
-        FileToByte transformer = new FileToByte();
         File testfile = new File("src/testfiles/test.txt");
-        transformer.tobyte(testfile);
+        assertEquals(byte[].class, FileToByte.tobyte(testfile).getClass());
+
     }
 
 }
