@@ -54,8 +54,7 @@ public class FileController{
     }
 
 
-
-    public void persist(File file) throws RuntimeException{
+    public void persist(File file){
         FileEntity tosave = transformer.transform(file);
         creator.save(tosave);
     }

@@ -5,6 +5,8 @@ import de.bfom.anna.business.file.controller.*;
 import de.bfom.anna.gui.MainFrame;
 
 import javax.persistence.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Properties;
 
 public class Startup {
@@ -19,11 +21,15 @@ public class Startup {
         myboundary.setController(mycontroller);
         mycontroller.retrieveAllReduced();
         myframe.init(myboundary);
+
     }
 }
 
 
 /* to do:
-    - handle if file is null
+    + handle if file is null (eg in retrieve or if input is null)
+
+    - handling errors better
+    - testing
 
  */

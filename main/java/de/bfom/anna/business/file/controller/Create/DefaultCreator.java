@@ -2,6 +2,7 @@ package de.bfom.anna.business.file.controller.Create;
 
 
 import de.bfom.anna.business.file.controller.Create.Create;
+import de.bfom.anna.business.file.controller.FileController;
 import de.bfom.anna.business.file.entity.FileEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +16,7 @@ public class DefaultCreator implements Create {
     }
 
     @Override
-    public void save(FileEntity file) throws RuntimeException{
+    public void save(FileEntity file){
         EntityManager em = myfactory.createEntityManager();
         EntityTransaction tx = null;
         try {
@@ -25,7 +26,7 @@ public class DefaultCreator implements Create {
             tx.commit();
         } catch( RuntimeException ex ) {
             if( tx != null && tx.isActive() ) tx.rollback();
-            throw ex;
+            ex.printStackTrace();
         } finally {
             em.close();
         }

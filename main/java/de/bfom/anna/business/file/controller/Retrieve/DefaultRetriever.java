@@ -29,7 +29,7 @@ public class DefaultRetriever implements Retrieve {
             tx.commit();
         } catch( RuntimeException ex ) {
             if( tx != null && tx.isActive() ) tx.rollback();
-            throw ex;
+            ex.printStackTrace();
         } finally {
             em.close();
         }
