@@ -24,8 +24,7 @@ public class Startup {
 
 
         File test = new File("C:\\Users\\Philipp Admin\\IdeaProjects\\anna\\src\\testfiles\\test.txt");
-
-        mycontroller.persist(test);
+        System.out.println(test.getParent());
     }
 }
 

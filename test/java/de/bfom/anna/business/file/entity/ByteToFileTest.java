@@ -1,10 +1,8 @@
 package de.bfom.anna.business.file.entity;
 
-
-
-import de.bfom.anna.business.file.entity.FileEntity;
 import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +26,10 @@ class ByteToFileTest {
         }
         assertEquals(File.class, rettestfile.getClass());
         assertTrue(fileEqual);
+        assertEquals(FilenameUtils.removeExtension(testfile.getName()),
+                FilenameUtils.removeExtension(rettestfile.getName()));
+        assertEquals(FilenameUtils.getExtension(testfile.getName()),
+                FilenameUtils.getExtension(rettestfile.getName()));
     }
 
 }

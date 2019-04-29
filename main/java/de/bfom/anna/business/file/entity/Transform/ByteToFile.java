@@ -19,7 +19,7 @@ public class ByteToFile {
             MimeType type = alltypes.forName(entity.getMime());
             extension = type.getExtension();
 
-            retfile = File.createTempFile(entity.getName(), extension);
+            retfile = new File("src/testfiles/TemporaryFiles",entity.getName() + extension);
             fos = new FileOutputStream(retfile);
             fos.write(entity.getFile());
             fos.flush();
