@@ -27,14 +27,14 @@ public class FileController{
     private Create creator;
     private FileTransformer transformer;
     private Retrieve retriever;
-    private Delete deleter;
+    public Delete deleter;
     private Update updater;
 
 
 
 
     public FileController(EntityManagerFactory myfactory, Create creator, FileTransformer transformer,
-                          DefaultRetriever retriever, Delete deleter, Update updater, FileBoundary myboundary){
+                          Retrieve retriever, Delete deleter, Update updater, FileBoundary myboundary){
         this.myfactory = myfactory;
         this.creator = creator;
         this.transformer = transformer;

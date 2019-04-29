@@ -3,7 +3,6 @@ package de.bfom.anna.business.file.controller;
 import de.bfom.anna.business.file.boundary.FileBoundary;
 import de.bfom.anna.business.file.controller.Create.Create;
 import de.bfom.anna.business.file.controller.Create.DefaultCreator;
-
 import de.bfom.anna.business.file.controller.Delete.DefaultDeletor;
 import de.bfom.anna.business.file.controller.Delete.Delete;
 import de.bfom.anna.business.file.controller.Retrieve.DefaultRetriever;
@@ -12,33 +11,24 @@ import de.bfom.anna.business.file.controller.Update.DefaultUpdate;
 import de.bfom.anna.business.file.controller.Update.Update;
 import de.bfom.anna.business.file.entity.FileEntity;
 import de.bfom.anna.business.file.entity.ReducedFileEntity;
-import de.bfom.anna.business.file.entity.Transform.ByteToFile;
 import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
 import de.bfom.anna.business.file.entity.Transform.FileTransformer;
-import org.apache.commons.io.FilenameUtils;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.MockitoRule;
-import org.mockito.*;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.*;
+
+import java.io.File;
+import org.apache.commons.io.FilenameUtils;
+import java.util.ArrayList;
 
 
 class FileControllerTest {
     @Mock
-    DefaultDeletor mydeletor = new DefaultDeletor(null);
+    Delete mydeletor = new DefaultDeletor(null);
 
     @Mock
     Create mycreator = new DefaultCreator(null);
@@ -64,91 +54,71 @@ class FileControllerTest {
 
     File test = new File("C:\\Users\\Philipp Admin\\IdeaProjects\\anna\\src\\testfiles\\test.txt");
     FileEntity testent = mytransformer.transform(test);
-
-
-
-
-
-
-
-
-    //FileEntity testentity = FileEntity.newFileEntity().id(1).name("test").mime(null).created(null).file(null).buildWithID();
-
-
-    //@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+    int id = 1;
 
 
     @BeforeEach
     public void setup(){
         MockitoAnnotations.initMocks(this);
-
-        /*doAnswer(invocationOnMock -> {
-            assertEquals(invocationOnMock.getArgument(0).getClass(), File.class);
-            assertEquals(((File) invocationOnMock.getArgument(0)).getName(), test.getName());
-            return null;
-        }).when(mytransformer).transform(any(File.class));*/
-
-
-
-        doAnswer(invocationOnMock -> {
-                    assertEquals(invocationOnMock.getArgument(0).getClass(), FileEntity.class );
-                    //assertEquals(((FileEntity) invocationOnMock.getArgument(0)).getName(), FilenameUtils.removeExtension(test.getName()));
-                    return  null;
-                }
-        ).when(mycreator).save(any(FileEntity.class));
-
-        doAnswer(invocationOnMock -> {
-            assertEquals(invocationOnMock.getArgument(0).getClass(), FileEntity.class);
-            assertEquals(((FileEntity) invocationOnMock.getArgument(0)).getName(), testent.getName());
-            return null;
-        }).when(myupdater).update(any(FileEntity.class));
-
-        testent.setId(1);
-
+        testent.setId(id);
     }
 
 
     @Test
     public void persistTest(){
-        /*doAnswer(invocationOnMock -> {
-            assertEquals(invocationOnMock.getArgument(0).getClass(), File.class);
-            assertEquals(((File) invocationOnMock.getArgument(0)).getName(), test.getName());
-            return null;
-        }).when(mytransformer).transform(any(File.class));
-
-        doAnswer(invocationOnMock -> {
-            assertEquals(invocationOnMock.getArgument(0).getClass(), FileEntity.class );
-            assertEquals(((FileEntity) invocationOnMock.getArgument(0)).getName(), FilenameUtils.removeExtension(test.getName()));
-            return  null;
-        }
-        ).when(mycreator).save(any(FileEntity.class));*/
-
         mycontroller.persist(test);
+        verify(mytransformer).transform(any(File.class));
+        verify(mycreator).save(any(FileEntity.class));
     }
 
     @Test
     public void persistOrUpdateTest(){
         ArrayList<FileEntity> entlist = new ArrayList<FileEntity>();
         when(myretriever.retrieve(any(String.class))).thenReturn(entlist);
+
         mycontroller.persistOrUpdate(test);
         verify(mytransformer).transform(test);
+        verify(myretriever).retrieve(any(String.class));
         verify(mycreator).save(any(FileEntity.class));
 
         entlist.add(testent);
-
         when(myboundary.persistOrUpdate()).thenReturn(0);
+        doAnswer(invocationOnMock -> {
+            assertEquals(id , ((FileEntity) invocationOnMock.getArgument(0)).getId());
+            return null;
+        }).when(myupdater).update(any(FileEntity.class));
+
         mycontroller.persistOrUpdate(test);
         verify(myboundary).persistOrUpdate();
         verify(myupdater).update(any(FileEntity.class));
 
         when(myboundary.persistOrUpdate()).thenReturn(1);
+        doAnswer(invocationOnMock -> {
+            assertEquals(FilenameUtils.removeExtension(test.getName()) + "1",
+                    ((FileEntity) invocationOnMock.getArgument(0)).getName());
+            return null;
+        }).when(mycreator).save(any(FileEntity.class));
+
         mycontroller.persistOrUpdate(test);
         verify(mycreator, times(2)).save(any(FileEntity.class));
     }
 
     @Test
+    public void updateTest(){
+        int updateId = 2;
+        doAnswer(invocationOnMock -> {
+            assertEquals(updateId, ((FileEntity) invocationOnMock.getArgument(0)).getId());
+            return null;
+        }).when(myupdater).update(any(FileEntity.class));
+
+        mycontroller.update(test, updateId);
+        verify(mytransformer).transform(any(File.class));
+    }
+
+    @Test
     public void retrieveTest(){
         when(myretriever.retrieve(any(Integer.class))).thenReturn(testent);
+
         assertEquals(FileEntity.class, mycontroller.retrieve(1).getClass());
         verify(myretriever).retrieve(1);
     }
@@ -156,6 +126,7 @@ class FileControllerTest {
     @Test
     public void retrieveFileTest(){
         when(myretriever.retrieve(any(Integer.class))).thenReturn(testent);
+
         assertEquals(File.class, mycontroller.retrieveFile(1).getClass());
         verify(myretriever).retrieve(1);
         // bytetofile static test

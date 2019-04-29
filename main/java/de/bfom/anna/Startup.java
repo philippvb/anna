@@ -22,6 +22,10 @@ public class Startup {
         mycontroller.retrieveAllReduced();
         myframe.init(myboundary);
 
+
+        File test = new File("C:\\Users\\Philipp Admin\\IdeaProjects\\anna\\src\\testfiles\\test.txt");
+
+        mycontroller.persist(test);
     }
 }
 
@@ -31,5 +35,9 @@ public class Startup {
 
     - handling errors better
     - testing
+
+
+    - setting up mockito
+
 
  */
