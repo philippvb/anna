@@ -1,12 +1,10 @@
 package de.bfom.anna.gui;
 
+import de.bfom.anna.Startup;
 import de.bfom.anna.business.file.boundary.FileBoundary;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -41,6 +39,14 @@ public class MainFrame implements ActionListener{
         mainframe.setResizable(false);
         mainframe.setLocation(50, 50);
         mainframe.getContentPane().setLayout(new java.awt.FlowLayout());
+
+        mainframe.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                Startup.cleanUpTemp();
+                System.exit(0);
+            }
+        });
         mainframe.setVisible(true);
 
         mainframe.getContentPane().add(update);
