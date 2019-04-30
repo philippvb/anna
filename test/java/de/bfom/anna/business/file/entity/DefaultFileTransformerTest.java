@@ -15,7 +15,7 @@ class DefaultFileTransformerTest {
         File testfile = new File("src/testfiles/test.txt");
         FileTransformer testtransformer = new DefaultFileTransformer();
         FileEntity myentity = testtransformer.transform(testfile);
-        assertEquals("test.txt", myentity.getName());
+        assertEquals("test", myentity.getName());
         assertEquals("text/plain", myentity.getMime());
     }
 

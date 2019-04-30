@@ -2,6 +2,7 @@ package de.bfom.anna.business.file.controller;
 
 import de.bfom.anna.business.file.controller.FileController;
 import de.bfom.anna.business.file.entity.FileEntity;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,26 +14,19 @@ import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DefaultDeletorTest {
-    EntityManagerFactory myfactory;
-    FileController mycontroller;
-    FileEntity del;
+    private EntityManagerFactory myfactory =Persistence.createEntityManagerFactory("MeineJpaPU");
+    private FileController mycontroller = FileController.defaultinit(myfactory, null);
 
 
     @BeforeEach
-    void init(){
-        myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
-        mycontroller = FileController.defaultinit(myfactory, null);
+    @AfterEach
+    void isEmpty(){
+        assertTrue(mycontroller.retrieveAll().isEmpty());
     }
 
     @Test
     void delete() {
-        // only works with empty table!!!
         mycontroller.persist(new File("src/testfiles/test.txt"));
-        del = mycontroller.retrieve(1);
-        assertTrue(del != null);
-        assertTrue(mycontroller.delete(1));
-        del = mycontroller.retrieve(1);
-        assertTrue(del == null);
-        assertFalse(mycontroller.delete(1));
+        mycontroller.delete(mycontroller.retrieveAll().get(0).getId());
     }
 }

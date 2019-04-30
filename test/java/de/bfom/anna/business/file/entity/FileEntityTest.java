@@ -1,12 +1,32 @@
 package de.bfom.anna.business.file.entity;
 
+import de.bfom.anna.business.file.entity.Transform.FileToByte;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.time.LocalDateTime;
 
 
 class FileEntityTest {
+
+    @Test
+    public void equalsTest(){
+        LocalDateTime now = LocalDateTime.now();
+        byte[] file = FileToByte.tobyte(new File("src/testfiles/test.txt"));
+        FileEntity test1 = FileEntity.newFileEntity().id(1).name("test").mime("test").created(now).file(file).buildWithID();
+        FileEntity test2 = FileEntity.newFileEntity().id(1).name("test").mime("test").created(now).file(file).buildWithID();
+        assertTrue(test1.equals(test2));
+    }
+
+    @Test
+    public void equalsWithOutIdTest(){
+        LocalDateTime now = LocalDateTime.now();
+        byte[] file = FileToByte.tobyte(new File("src/testfiles/test.txt"));
+        FileEntity test1 = FileEntity.newFileEntity().name("test").mime("test").created(now).file(file).build();
+        FileEntity test2 = FileEntity.newFileEntity().name("test").mime("test").created(now).file(file).build();
+        assertTrue(test1.equalsWithOutId(test2));
+    }
 
     @Test
     void build(){

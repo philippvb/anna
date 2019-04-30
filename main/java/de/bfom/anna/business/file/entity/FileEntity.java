@@ -1,7 +1,11 @@
 package de.bfom.anna.business.file.entity;
 
+import org.apache.commons.io.FileUtils;
+
 import javax.persistence.*;
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "FILES")
@@ -24,6 +28,27 @@ public class FileEntity {
     @Lob
     @Column(name = "file", columnDefinition="MEDIUMBLOB")
     private byte[] file;
+
+
+
+    @Override
+    public boolean equals(Object object){
+        if(equalsWithOutId(object)){
+            return this.id == ((FileEntity) object).getId();
+        }
+        else return false;
+    }
+
+    public boolean equalsWithOutId(Object object){
+        if(object.getClass() == FileEntity.class){
+            FileEntity file = (FileEntity) object;
+            return(this.name.equals(file.getName()) &&
+                    this.mime.equals(file.getMime()) &&
+                    this.created.equals(file.getCreated()) );//&&
+                    //Arrays.equals(this.file, file.getFile()));
+        }
+        else return false;
+    }
 
 
     // getter and setter

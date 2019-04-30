@@ -6,6 +6,7 @@ import org.apache.commons.io.FilenameUtils;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 
 public class DefaultFileTransformer implements FileTransformer {
@@ -32,7 +33,7 @@ public class DefaultFileTransformer implements FileTransformer {
          FileEntity transfile = FileEntity.newFileEntity()
                 .name(name)
                 .mime(mime)
-                .created(LocalDateTime.now())
+                .created(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
                 .file(bFile)
                 .build();
         return transfile;

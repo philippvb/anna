@@ -22,8 +22,6 @@ public class Startup {
         myframe.init(myboundary);
 
 
-        //File test = new File("C:\\Users\\Philipp Admin\\IdeaProjects\\anna\\src\\testfiles\\test.txt");
-
     }
 
 
@@ -40,5 +38,5 @@ public class Startup {
 
 
 /* to do:
-    + handle if file is null (eg in retrieve or if input is null)
+
  */
