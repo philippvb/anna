@@ -1,5 +1,6 @@
 package de.bfom.anna.business.file.entity.Transform;
 
+import de.bfom.anna.Startup;
 import de.bfom.anna.business.file.entity.FileEntity;
 import org.apache.tika.mime.*;
 
@@ -19,7 +20,7 @@ public class ByteToFile {
             MimeType type = alltypes.forName(entity.getMime());
             extension = type.getExtension();
 
-            retfile = new File("src/testfiles/TemporaryFiles",entity.getName() + extension);
+            retfile = new File(Startup.properties.getProperty("tempFolder"),entity.getName() + extension);
             fos = new FileOutputStream(retfile);
             fos.write(entity.getFile());
             fos.flush();

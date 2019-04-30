@@ -3,11 +3,9 @@ package de.bfom.anna;
 import de.bfom.anna.business.file.boundary.FileBoundary;
 import de.bfom.anna.business.file.controller.*;
 import de.bfom.anna.gui.MainFrame;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.persistence.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.Properties;
 
 public class Startup {
@@ -24,14 +22,13 @@ public class Startup {
         myframe.init(myboundary);
 
 
-        File test = new File("C:\\Users\\Philipp Admin\\IdeaProjects\\anna\\src\\testfiles\\test.txt");
-
+        //File test = new File("C:\\Users\\Philipp Admin\\IdeaProjects\\anna\\src\\testfiles\\test.txt");
 
     }
 
 
     public static void cleanUpTemp(){
-        File folder = new File("src/testfiles/TemporaryFiles");
+        File folder = new File(properties.getProperty("tempFolder"));
         File[] listOfFiles = folder.listFiles();
         for(File f:listOfFiles){
             if(!f.delete()) {
@@ -44,12 +41,4 @@ public class Startup {
 
 /* to do:
     + handle if file is null (eg in retrieve or if input is null)
-
-    - handling errors better
-    - testing
-
-
-    - setting up mockito
-
-
  */
