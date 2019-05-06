@@ -44,8 +44,8 @@ public class FileEntity {
             FileEntity file = (FileEntity) object;
             return(this.name.equals(file.getName()) &&
                     this.mime.equals(file.getMime()) &&
-                    this.created.equals(file.getCreated()) );//&&
-                    //Arrays.equals(this.file, file.getFile()));
+                    this.created.isEqual(file.getCreated()) &&
+                    Arrays.equals(this.file, file.getFile()));
         }
         else return false;
     }
