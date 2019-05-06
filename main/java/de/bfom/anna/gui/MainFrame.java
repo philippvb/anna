@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainFrame implements ActionListener{
-    private JFrame mainframe = new JFrame();
+    public JFrame mainframe = new JFrame();
 
     private JTable table;
     private ReducedFileEntityTable reducedTable;
@@ -31,7 +31,10 @@ public class MainFrame implements ActionListener{
         update = new JButton("Update");
         update.addActionListener(this);
         save = new JButton("persist");
+        save.setName("persist");
         save.addActionListener(this);
+
+        fc.setName("FileChooser");
 
         mainframe.setTitle("test");
         mainframe.setTitle("Word Cloud");
@@ -49,7 +52,7 @@ public class MainFrame implements ActionListener{
         });
         mainframe.setVisible(true);
 
-        mainframe.getContentPane().add(update);
+        //mainframe.getContentPane().add(update);
         mainframe.getContentPane().add(save);
         mainframe.getContentPane().add(tablecontainer);
     }

@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
 import java.io.File;
 
 
-class DefaultCreatorTest {
+class DefaultCreatorIntegrationTest {
     EntityManagerFactory myfactory =Persistence.createEntityManagerFactory("MeineJpaPU");
     FileController mycontroller = FileController.defaultinit(myfactory, null);
     FileTransformer trans = new DefaultFileTransformer();

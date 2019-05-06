@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 import java.io.File;
 
 
-class DefaultDeletorTest {
+class DefaultDeletorIntegrationTest {
     EntityManagerFactory myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
     FileController mycontroller = FileController.defaultinit(myfactory, null);
 

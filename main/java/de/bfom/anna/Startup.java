@@ -9,14 +9,18 @@ import java.io.File;
 import java.util.Properties;
 
 public class Startup {
+    public static EntityManagerFactory emf;
+    public static MainFrame myframe;
+    public static FileBoundary myboundary;
+    public static FileController mycontroller;
 
     public static final Properties properties = LoadProperties.getProperties("src/main/resources/properties/config.properties");
     public static void main(String[] args) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MeineJpaPU");
-        MainFrame myframe = new MainFrame();
-        FileBoundary myboundary = new FileBoundary(null, myframe);
-        FileController mycontroller = FileController.defaultinit(emf, myboundary);
+        emf = Persistence.createEntityManagerFactory("MeineJpaPU");
+        myframe = new MainFrame();
+        myboundary = new FileBoundary(null, myframe);
+        mycontroller = FileController.defaultinit(emf, myboundary);
         myboundary.setController(mycontroller);
         mycontroller.retrieveAllReduced();
         myframe.init(myboundary);
