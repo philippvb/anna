@@ -16,43 +16,33 @@ import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
 import de.bfom.anna.business.file.entity.Transform.FileTransformer;
 import org.apache.commons.io.FilenameUtils;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.*;
 import java.io.File;
 import java.util.List;
 
 
+
+@Stateless
 public class FileController{
+
+    @Inject
     private EntityManagerFactory myfactory;
+    @Inject
     private FileBoundary myboundary;
+    @Inject
     private Create creator;
+    @Inject
     private FileTransformer transformer;
+    @Inject
     private Retrieve retriever;
+    @Inject
     public Delete deleter;
+    @Inject
     private Update updater;
 
 
-
-
-
-    public FileController(EntityManagerFactory myfactory, Create creator, FileTransformer transformer,
-                          Retrieve retriever, Delete deleter, Update updater, FileBoundary myboundary){
-        this.myfactory = myfactory;
-        this.creator = creator;
-        this.transformer = transformer;
-        this.retriever = retriever;
-        this.deleter = deleter;
-        this.updater = updater;
-        this.myboundary = myboundary;
-    }
-
-    public static FileController defaultinit(EntityManagerFactory myfactory, FileBoundary myboundary){
-        Create mysaver = new DefaultCreator(myfactory);
-        FileTransformer mytransformer = new DefaultFileTransformer();
-        DefaultRetriever myretriever = new DefaultRetriever(myfactory);
-        Delete mydeleter = new DefaultDeletor(myfactory);
-        Update myupdater = new DefaultUpdate(myfactory);
-        return new FileController(myfactory, mysaver, mytransformer, myretriever, mydeleter, myupdater, myboundary);
-    }
 
 
     public void persist(File file){

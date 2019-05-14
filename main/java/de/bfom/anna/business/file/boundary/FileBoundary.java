@@ -5,18 +5,19 @@ import de.bfom.anna.business.file.entity.FileEntity;
 import de.bfom.anna.business.file.entity.ReducedFileEntity;
 import de.bfom.anna.gui.MainFrame;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.io.File;
 import java.util.List;
 
+@Stateless
 public class FileBoundary {
+
+    @Inject
     private FileController mycontroller;
+
+    @Inject
     private MainFrame mainframe;
-
-    public FileBoundary(FileController mycontroller, MainFrame mainframe) {
-        this.mycontroller = mycontroller;
-        this.mainframe = mainframe;
-    }
-
 
 
     public void persist(File file) {
