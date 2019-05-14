@@ -15,7 +15,7 @@ public class Startup {
     public static FileController mycontroller;
 
     public static final Properties properties = LoadProperties.getProperties("src/main/resources/properties/config.properties");
-    public static void main(String[] args) {
+    /* public static void main(String[] args) {
 
         emf = Persistence.createEntityManagerFactory("MeineJpaPU");
         myframe = new MainFrame();
@@ -26,7 +26,7 @@ public class Startup {
         myframe.init(myboundary);
 
 
-    }
+    } */
 
 
     public static void cleanUpTemp(){
