@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileToByteTest {
 
+    /*
     @Test
     void tobyte(){
         File testfile = new File("src/testfiles/test.txt");
@@ -15,4 +16,6 @@ class FileToByteTest {
 
     }
 
+
+     */
 }

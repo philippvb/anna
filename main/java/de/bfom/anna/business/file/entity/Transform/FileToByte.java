@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 @Stateless
 public class FileToByte {
 
-    public static byte[] tobyte(File file){
+    public byte[] tobyte(File file){
         FileInputStream fileInputStream = null;
         byte[] bFile = new byte[(int) file.length()];
         try

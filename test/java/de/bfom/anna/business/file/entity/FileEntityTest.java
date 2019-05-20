@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 
 class FileEntityTest {
 
+    /*
     @Test
     public void equalsTest(){
         LocalDateTime now = LocalDateTime.now();
@@ -56,5 +57,7 @@ class FileEntityTest {
         assertEquals(".txt", test.getMime());
         assertEquals(testdate, test.getCreated());
     }
+
+     */
 
 }

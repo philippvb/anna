@@ -8,8 +8,8 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-public class MainFrame implements ActionListener{
-    public JFrame mainframe = new JFrame();
+public class MainFrame {
+    /* public JFrame mainframe = new JFrame();
 
     private JTable table;
     private ReducedFileEntityTable reducedTable;
@@ -85,7 +85,8 @@ public class MainFrame implements ActionListener{
     private void openfile(int id){
         Desktop d = Desktop.getDesktop();
         try{
-            d.open(boundary.retrieveFile(id));
+            d.open(null);
+                    //boundary.retrieveFile(id));
         }
         catch (IOException e){
             e.printStackTrace();
@@ -128,5 +129,5 @@ public class MainFrame implements ActionListener{
             }
         }
     }
-
+*/
 }

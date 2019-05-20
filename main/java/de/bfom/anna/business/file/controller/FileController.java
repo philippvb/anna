@@ -42,6 +42,7 @@ public class FileController{
         creator.save(tosave);
     }
 
+    /*
     public void persistOrUpdate(File file){
         FileEntity tosave = transformer.transform(file);
         List<FileEntity> results = retriever.retrieve(FilenameUtils.removeExtension(file.getName()));
@@ -61,6 +62,8 @@ public class FileController{
         }
     }
 
+     */
+
 
     public void update(File file, int id){
         FileEntity toupdate = transformer.transform(file);
@@ -76,7 +79,7 @@ public class FileController{
 
     public File retrieveFile(int id){
         FileEntity retrieved = retriever.retrieve(id);
-        return ByteToFile.transform(retrieved);
+        return transformer.transformToFile(retrieved);
     }
 
     public List<FileEntity> retrieveAll(){

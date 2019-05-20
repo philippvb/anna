@@ -12,7 +12,7 @@ import java.io.IOException;
 @Stateless
 public class ByteToFile {
 
-    public static File transform(FileEntity entity){
+    public File transform(FileEntity entity){
         FileOutputStream fos = null;
         File retfile = null;
         String extension = "";
