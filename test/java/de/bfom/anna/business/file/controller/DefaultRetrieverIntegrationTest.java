@@ -1,22 +1,8 @@
 package de.bfom.anna.business.file.controller;
 
-import de.bfom.anna.business.file.controller.Retrieve.DefaultRetriever;
-import de.bfom.anna.business.file.controller.Retrieve.Retrieve;
-import de.bfom.anna.business.file.entity.FileEntity;
-import de.bfom.anna.business.file.entity.ReducedFileEntity;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import java.io.File;
-
 
 class DefaultRetrieverIntegrationTest {
+    /*
     EntityManagerFactory myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
     FileController mycontroller = null; //FileController.defaultinit(myfactory, null);
     FileEntity del;
@@ -51,4 +37,6 @@ class DefaultRetrieverIntegrationTest {
         mycontroller.delete(mycontroller.retrieveAllReduced().get(0).getID());
 
     }
+
+     */
 }

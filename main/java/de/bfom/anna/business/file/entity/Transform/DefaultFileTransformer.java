@@ -3,16 +3,22 @@ package de.bfom.anna.business.file.entity.Transform;
 import de.bfom.anna.business.file.entity.FileEntity;
 import org.apache.tika.Tika;
 import org.apache.commons.io.FilenameUtils;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 
+@Stateless
 public class DefaultFileTransformer implements FileTransformer {
 
-    private FileToByte transformer = new FileToByte();
-    private ByteToFile transformerToByte = new ByteToFile();
+    @Inject
+    private FileToByte transformer;
+    @Inject
+    private ByteToFile transformerToByte;
 
 
      public FileEntity transform(File file){

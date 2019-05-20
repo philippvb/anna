@@ -1,8 +1,11 @@
 package de.bfom.anna.business.file.entity.Transform;
 
+import javax.ejb.Stateless;
 import java.io.File;
 import java.io.FileInputStream;
 
+
+@Stateless
 public class FileToByte {
 
     public static byte[] tobyte(File file){

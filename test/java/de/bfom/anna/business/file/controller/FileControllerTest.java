@@ -1,32 +1,10 @@
 package de.bfom.anna.business.file.controller;
 
-import de.bfom.anna.business.file.boundary.FileBoundary;
-import de.bfom.anna.business.file.controller.Create.Create;
-import de.bfom.anna.business.file.controller.Create.DefaultCreator;
-import de.bfom.anna.business.file.controller.Delete.DefaultDeletor;
-import de.bfom.anna.business.file.controller.Delete.Delete;
-import de.bfom.anna.business.file.controller.Retrieve.DefaultRetriever;
-import de.bfom.anna.business.file.controller.Retrieve.Retrieve;
-import de.bfom.anna.business.file.controller.Update.DefaultUpdate;
-import de.bfom.anna.business.file.controller.Update.Update;
-import de.bfom.anna.business.file.entity.FileEntity;
-import de.bfom.anna.business.file.entity.ReducedFileEntity;
-import de.bfom.anna.business.file.entity.Transform.DefaultFileTransformer;
-import de.bfom.anna.business.file.entity.Transform.FileTransformer;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.*;
-
-import java.io.File;
-import org.apache.commons.io.FilenameUtils;
-import java.util.ArrayList;
 
 
 class FileControllerTest {
+
     /*@Mock
     Delete mydeletor = new DefaultDeletor(null);
 

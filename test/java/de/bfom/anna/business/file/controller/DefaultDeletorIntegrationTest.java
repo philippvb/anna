@@ -12,6 +12,7 @@ import java.io.File;
 
 
 class DefaultDeletorIntegrationTest {
+    /*
     EntityManagerFactory myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
     FileController mycontroller = null; //FileController.defaultinit(myfactory, null);
 
@@ -27,4 +28,6 @@ class DefaultDeletorIntegrationTest {
         mycontroller.persist(new File("src/testfiles/test.txt"));
         mycontroller.delete(mycontroller.retrieveAll().get(0).getId());
     }
+
+     */
 }

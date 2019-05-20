@@ -4,10 +4,12 @@ import de.bfom.anna.Startup;
 import de.bfom.anna.business.file.entity.FileEntity;
 import org.apache.tika.mime.*;
 
+import javax.ejb.Stateless;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+@Stateless
 public class ByteToFile {
 
     public static File transform(FileEntity entity){
