@@ -13,7 +13,7 @@ import java.io.File;
 
 class DefaultDeletorIntegrationTest {
     EntityManagerFactory myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
-    FileController mycontroller = FileController.defaultinit(myfactory, null);
+    FileController mycontroller = null; //FileController.defaultinit(myfactory, null);
 
 
     @BeforeEach

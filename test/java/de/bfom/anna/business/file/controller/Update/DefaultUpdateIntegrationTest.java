@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DefaultUpdateIntegrationTest {
     EntityManagerFactory myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
-    FileController mycontroller = FileController.defaultinit(myfactory, null);
+    FileController mycontroller = null; //FileController.defaultinit(myfactory, null);
     FileTransformer trans = new DefaultFileTransformer();
     Create creator = new DefaultCreator(myfactory);
     Update updater = new DefaultUpdate(myfactory);

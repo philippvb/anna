@@ -18,7 +18,7 @@ import java.io.File;
 
 class DefaultRetrieverIntegrationTest {
     EntityManagerFactory myfactory = Persistence.createEntityManagerFactory("MeineJpaPU");
-    FileController mycontroller = FileController.defaultinit(myfactory, null);
+    FileController mycontroller = null; //FileController.defaultinit(myfactory, null);
     FileEntity del;
     Retrieve ret = new DefaultRetriever(myfactory);
 

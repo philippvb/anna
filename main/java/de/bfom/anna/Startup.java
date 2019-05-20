@@ -43,4 +43,9 @@ public class Startup {
 
 /* to do:
 
+- setup connector in payara
+- define new sql schema in payara
+- add it to persistence xml with jta
+- change injection of entitymanagerfactory
+
  */

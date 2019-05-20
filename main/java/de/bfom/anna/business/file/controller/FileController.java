@@ -28,8 +28,6 @@ import java.util.List;
 public class FileController{
 
     @Inject
-    private EntityManagerFactory myfactory;
-    @Inject
     private FileBoundary myboundary;
     @Inject
     private Create creator;
